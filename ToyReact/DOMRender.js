@@ -4,12 +4,13 @@ const render = (element, node) => {
     mount(element, node)
 }
 
-const mount = (element, node) => {
+const mount = (element, parent) => {
     const componentInstance = instantiateComponent(element)
-    const renderedComponent = componentInstance.renderComponent()
+    const node = componentInstance.renderComponent()
+    
 
-    //todo: children 怎么办
-    node.appendChild(renderedComponent)
+    //todo: children
+    parent.appendChild(node)
 }
 
 export default render

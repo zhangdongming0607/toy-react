@@ -1,29 +1,44 @@
-import Component from "./Component";
+import instantiateComponent from "./instantiateComponent";
 
-class DOMComponent extends Component {
+class DOMComponent {
   constructor(element) {
-    super(element);
-    this._domNode = null
+    this._currentElement = element;
+    this._domNode = null;
   }
 
   renderComponent() {
     const renderedElement = document.createElement(this._currentElement.type);
     // todo: properties
 
-    this._domNode = renderedElement
-    this._renderChildren()
+    this._domNode = renderedElement;
+    this._renderChildren();
 
     // debugger
-    return renderedElement
+    return renderedElement;
+  }
+
+  //todo: 列表优化
+  mountChildren(parentNode, element) {
+    const children = Array.isArray(element)  ? element : [element];
+    const listNode = document.createDocumentFragment();
+    for (const child of children) {
+      if (typeof child === "string" || typeof child === "number") {
+        const textNode = document.createTextNode(children);
+        listNode.appendChild(textNode);
+      } else if(Array.isArray(child)) {
+          this.mountChildren(listNode, child)
+      } else {
+        const renderedInstance = instantiateComponent(child);
+        const node = renderedInstance.renderComponent();
+        listNode.appendChild(node);
+      }
+    }
+    parentNode.appendChild(listNode)
   }
 
   _renderChildren() {
-      const children = this._currentElement.props.children
-      if(typeof children === 'string' || typeof children === 'number') {
-          const textNode = document.createTextNode(children)
-          this._domNode.appendChild(textNode)
-      }
-      //todo: element array
+    const children = this._currentElement.props.children;
+    this.mountChildren(this._domNode, children)
   }
 }
 

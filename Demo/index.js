@@ -1,15 +1,23 @@
 import ToyReact, { Component, DOMRender } from "ToyReact";
+import List from "./List";
 
 class Demo extends Component {
   render() {
     return (
       <div>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span>Demo</span>
+        <List>
+          <span>123</span>
+          <List>
+            <span>123</span>
+          </List>
+          <List>
+            <span>123</span>
+          </List>
+        </List>
       </div>
     );
   }
 }
 
-DOMRender(123, document.querySelector('#root'))
+DOMRender(<Demo />, document.querySelector("#root"));
