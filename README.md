@@ -4,10 +4,12 @@
 
 # todo list
 
-- [ ] 项目搭建
-- [ ] jsx 语法编译 
-- [ ] Element -> Component -> Instants
-- [ ] Update by props and State
+- [x] 项目搭建
+- [x] jsx 语法编译 
+- [ ] Element -> Component -> Instance
+- [ ] 一些常见的 edge case
+- [ ] 组件更新
+- [ ] 
 - [ ] 必需的 lifecycle
 - [ ] diff 算法
 - [ ] (optional) css 方案
