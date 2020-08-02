@@ -6,13 +6,13 @@
 
 - [x] 项目搭建
 - [x] jsx 语法编译 
-- [ ] Element -> Component -> Instance
-- [ ] 一些常见的 edge case
+- [x] Element -> Component -> Instance
+- [x] 一些常见的 edge case (Array 为主)
+- [ ] 简单的事件系统
 - [ ] 组件更新
-- [ ] 
-- [ ] 必需的 lifecycle
 - [ ] diff 算法
+- [ ] 列表优化
+- [ ] 必需的 lifecycle
 - [ ] (optional) css 方案
-- [ ] (optional) function component
+- [ ] (optional) functional component
 - [ ] (optional) react hooks
-

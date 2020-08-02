@@ -16,7 +16,7 @@ const instantiateComponent = (element) => {
     // DOM element
     return new DOMComponent(element);
   } else if (typeof element.type === "function") {
-    // Composite Component
+    // composite Component
     return new element.type(element);
   }
   return componentInstance;
