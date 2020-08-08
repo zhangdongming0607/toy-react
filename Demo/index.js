@@ -2,19 +2,17 @@ import ToyReact, { Component, DOMRender } from "ToyReact";
 import List from "./List";
 
 class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {count: 0}
+    setInterval(() => {
+      this.setState({ count: this.state.count + 1 });
+    }, 1000);
+  }
   render() {
     return (
       <div>
-        <span>Demo</span>
-        <List>
-          <span>123</span>
-          <List>
-            <span>123</span>
-          </List>
-          <List>
-            <span>123</span>
-          </List>
-        </List>
+        count: {this.state.count}
       </div>
     );
   }
