@@ -8,10 +8,10 @@
 - [x] jsx 语法编译 
 - [x] Element -> Component -> Instance
 - [x] 一些常见的 edge case (Array 为主)
-- [ ] 简单的事件系统
-- [ ] 组件更新
+- [x] 组件更新
 - [ ] diff 算法
 - [ ] 列表优化
+- [ ] 简单的事件系统
 - [ ] 必需的 lifecycle
 - [ ] (optional) css 方案
 - [ ] (optional) functional component

@@ -23,8 +23,8 @@ class Component {
     this._currentElement;
   }
 
-  renderComponent() {
-    const renderedElement = this.render();
+  renderComponent(nextRenderedElement) {
+    const renderedElement = nextRenderedElement ?? this.render();
     this._renderedComponent = instantiateComponent(renderedElement);
     this._renderedNode = this._renderedComponent.renderComponent();
     return this._renderedNode;
@@ -44,14 +44,11 @@ class Component {
     if (shouldUpdateComponent(prevRenderedElement, nextRenderedElement)) {
       refreshComponent(this._renderedComponent, nextRenderedElement)
     } else {
-      // this.unmountComponent(this._renderedInstance);
+      this.unmountComponent(this._renderedInstance);
       const nextRenderedComponent = instantiateComponent(nextRenderedElement);
-      const nextRenderedNode = nextRenderedComponent.renderComponent();
-      replaceNode(this._renderedComponent._domNode, nextRenderedNode);
-      this._renderedComponent = nextRenderedComponent;
-      this._renderedNode = nextRenderedNode;
-      this._currentElement = nextElement;
-      this._domNode = null;
+      const prevDOMNode = this._renderedComponent._domNode
+      this._renderedNode = this.renderComponent(nextRenderedElement)
+      replaceNode(prevDOMNode, this._renderedNode)
     }
   }
 }
