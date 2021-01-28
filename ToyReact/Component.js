@@ -11,7 +11,6 @@ class Component {
     this._renderedComponent = null;
     // this.props =
     // console.log(props)
-    // debugger
   }
 
   setState(partialState) {
@@ -37,19 +36,28 @@ class Component {
   updateComponent(prevElement, nextElement) {
     //todo?: componentWillReceiveProps
     this._currentElement = nextElement;
+
+    this.props = nextElement.props;
     this.state = this._pendingState;
+    this._pendingState = null;
 
     const prevRenderedElement = this._renderedComponent._currentElement;
     const nextRenderedElement = this.render();
+
+    // 如果类型相同，就直接更新
     if (shouldUpdateComponent(prevRenderedElement, nextRenderedElement)) {
-      refreshComponent(this._renderedComponent, nextRenderedElement)
+      refreshComponent(this._renderedComponent, nextRenderedElement);
     } else {
-      this.unmountComponent(this._renderedInstance);
+      // 否则就 remount
+      this.unmountComponent(this._renderedComponent); // 卸载掉之前的
       const nextRenderedComponent = instantiateComponent(nextRenderedElement);
-      const prevDOMNode = this._renderedComponent._domNode
-      this._renderedNode = this.renderComponent(nextRenderedElement)
-      replaceNode(prevDOMNode, this._renderedNode)
+      const prevDOMNode = this._renderedComponent._domNode;
+      this._renderedNode = nextRenderedComponent.renderComponent();
+      replaceNode(prevDOMNode, this._renderedNode);
     }
+    this._currentElement = nextRenderedElement;
+    this._renderedComponent._currentElement = nextRenderedElement;
+    this._renderedComponent._domNode = this._renderedNode;
   }
 }
 

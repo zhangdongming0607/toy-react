@@ -11,28 +11,26 @@ class Demo extends Component {
   }
 
   render() {
-    const { count } = this.state; 
-    if (count % 2 === 0) {
+    const { count } = this.state;
+    const res = count % 2;
+    if (res === 0) {
       return (
         <div>
-          <List>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-          </List>
+          <div>1</div>
+          <div>2</div>
+          <div>{count}</div>
         </div>
       );
-    } else {
-      return (
-        <span>
-          <List>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-          </List>
-        </span>
-      );
     }
+    return (
+      <List>
+        <div>
+          <div>1</div>
+          <div>2</div>
+          <div>{count}</div>
+        </div>
+      </List>
+    );
   }
 }
 

@@ -1,5 +1,5 @@
 import instantiateComponent from "./instantiateComponent";
-import instantiateChildren from './instantiateChildren'
+import instantiateChildren from "./instantiateChildren";
 
 class DOMComponent {
   constructor(element) {
@@ -14,14 +14,12 @@ class DOMComponent {
     this._domNode = renderedElement;
     this._renderChildren();
 
-    // debugger
     return renderedElement;
   }
 
   //todo: 列表优化
   mountChildren(parentNode, children) {
-    const childrenInstance = instantiateChildren(children)
-    console.log(childrenInstance)
+    const childrenInstance = instantiateChildren(children);
     const listNode = document.createDocumentFragment();
     for (const child of children) {
       if (typeof child === "string" || typeof child === "number") {

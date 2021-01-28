@@ -7,7 +7,7 @@ export function empty(node) {
 }
 
 export function replaceNode(prevNode, nextNode) {
-  const parent = prevNode.parentNode
+  const parent = prevNode.parentNode;
   empty(parent);
-  parent.appendChild(nextNode)
+  parent.appendChild(nextNode);
 }
