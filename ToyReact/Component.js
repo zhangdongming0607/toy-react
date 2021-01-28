@@ -22,10 +22,10 @@ class Component {
     this._currentElement;
   }
 
-  renderComponent(nextRenderedElement) {
+  mountComponent(nextRenderedElement) {
     const renderedElement = nextRenderedElement ?? this.render();
     this._renderedComponent = instantiateComponent(renderedElement);
-    this._renderedNode = this._renderedComponent.renderComponent();
+    this._renderedNode = this._renderedComponent.mountComponent();
     return this._renderedNode;
   }
 

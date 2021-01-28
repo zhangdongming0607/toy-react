@@ -5,12 +5,17 @@ const getComponentKey = (component, index) => {
   return index.toString(36);
 };
 
-const traverseAllChildren = (children, nameSoFar, addToHashTree, context) => {
-  if (
-    typeof children === "string" ||
-    typeof children === "number" ||
-    !Array.isArray(children)
-  ) {
+function traverseAllChildren(children, addToHashTree, traverseContext) {
+  return traverseAllChildrenImpl(children, "", addToHashTree, traverseContext);
+}
+
+const traverseAllChildrenImpl = (
+  children,
+  nameSoFar,
+  addToHashTree,
+  context
+) => {
+  if (!Array.isArray(children)) {
     addToHashTree(
       children,
       nameSoFar + SEPERATOR + getComponentKey(children, 0),
@@ -21,7 +26,7 @@ const traverseAllChildren = (children, nameSoFar, addToHashTree, context) => {
   const namePrefix = !nameSoFar ? SEPERATOR : nameSoFar + SUB_SEPERATOR;
   let subTreeCount = 0;
   children.forEach((child, index) => {
-    subTreeCount += traverseAllChildren(
+    subTreeCount += traverseAllChildrenImpl(
       child,
       namePrefix + getComponentKey(child, index),
       addToHashTree,

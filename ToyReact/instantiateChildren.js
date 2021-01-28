@@ -8,9 +8,9 @@ const instantiateChild = (child, name, childInstances) => {
 };
 
 const instantiateChildren = (children) => {
-  const childrenInstance = {}; // children hash tree
-  traverseAllChildren(children, "", instantiateChild, childrenInstance);
-  return childrenInstance;
+  const childrenHashTree = {}; // children hash tree
+  traverseAllChildren(children, instantiateChild, childrenHashTree);
+  return childrenHashTree;
 };
 
 export default instantiateChildren;

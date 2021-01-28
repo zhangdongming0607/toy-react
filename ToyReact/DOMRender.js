@@ -6,7 +6,7 @@ const render = (element, node) => {
 
 const mount = (element, parent) => {
   const componentInstance = instantiateComponent(element);
-  const node = componentInstance.renderComponent();
+  const node = componentInstance.mountComponent();
 
   //todo: children
   parent.appendChild(node);
