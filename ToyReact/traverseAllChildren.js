@@ -5,18 +5,13 @@ const getComponentKey = (component, index) => {
   return index.toString(36);
 };
 
-function traverseAllChildren(children, addToHashTree, traverseContext) {
-  return traverseAllChildrenImpl(children, "", addToHashTree, traverseContext);
+function traverseAllChildren(children, callback, traverseContext) {
+  return traverseAllChildrenImpl(children, "", callback, traverseContext);
 }
 
-const traverseAllChildrenImpl = (
-  children,
-  nameSoFar,
-  addToHashTree,
-  context
-) => {
+const traverseAllChildrenImpl = (children, nameSoFar, callback, context) => {
   if (!Array.isArray(children)) {
-    addToHashTree(
+    callback(
       children,
       nameSoFar + SEPERATOR + getComponentKey(children, 0),
       context
@@ -29,7 +24,7 @@ const traverseAllChildrenImpl = (
     subTreeCount += traverseAllChildrenImpl(
       child,
       namePrefix + getComponentKey(child, index),
-      addToHashTree,
+      callback,
       context
     );
   });

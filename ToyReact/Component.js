@@ -52,7 +52,7 @@ class Component {
       this.unmountComponent(this._renderedComponent); // 卸载掉之前的
       const nextRenderedComponent = instantiateComponent(nextRenderedElement);
       const prevDOMNode = this._renderedComponent._domNode;
-      this._renderedNode = nextRenderedComponent.renderComponent();
+      this._renderedNode = nextRenderedComponent.mountComponent();
       replaceNode(prevDOMNode, this._renderedNode);
     }
     this._currentElement = nextRenderedElement;

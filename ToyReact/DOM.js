@@ -19,3 +19,15 @@ export function appendChildren(node, children) {
     node.appendChild(children);
   }
 }
+
+export function removeChild(node, child) {
+  node.removeChild(child);
+}
+
+export function insertAfter(node, child, afterChild) {
+  if (afterChild) {
+    node.insertBefore(child, afterChild.nextSibling);
+  } else {
+    node.appendChild(child);
+  }
+}

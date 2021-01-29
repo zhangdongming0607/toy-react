@@ -5,7 +5,7 @@ class Demo extends Component {
   constructor(props) {
     super(props);
     this.state = { count: 0 };
-    setTimeout(() => {
+    setInterval(() => {
       this.setState({ count: this.state.count + 1 });
     }, 1000);
   }
@@ -15,9 +15,9 @@ class Demo extends Component {
     return (
       <List>
         <div>
-          <div>1</div>
-          <div>2</div>
-          <div>{count}</div>
+          <div>a</div>
+          <div>b</div>
+          {count > 0 ? <div>{count}</div> : <span>{count}</span>}
         </div>
       </List>
     );
